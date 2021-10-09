@@ -1,4 +1,4 @@
-package tk.artuto.csfbungee;
+package ru.magmacube.csfbungee;
 
 import net.md_5.bungee.api.plugin.Plugin;
 

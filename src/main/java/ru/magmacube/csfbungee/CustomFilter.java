@@ -1,4 +1,4 @@
-package tk.artuto.csfbungee;
+package ru.magmacube.csfbungee;
 
 import java.util.logging.Filter;
 
