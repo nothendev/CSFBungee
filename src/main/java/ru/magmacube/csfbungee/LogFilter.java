@@ -11,44 +11,31 @@ public class LogFilter implements CustomFilter
 {
     private Logger log;
     private Set<String> ignored;
-
-    LogFilter(CSF plugin)
-    {
+    LogFilter(CSF plugin) {
         this.log = plugin.getProxy().getLogger();
         this.ignored = new HashSet<>(plugin.getConfig().getIgnoredLines());
     }
-
     @Override
-    public boolean isLoggable(LogRecord record)
-    {
+    public boolean isLoggable(LogRecord record) {
         boolean found = false;
-
         for(String line : ignored)
         {
             if(found)
                 break;
-
-            found = record.getMessage().toLowerCase().startsWith(line.toLowerCase());
+            found = record.getMessage().toLowerCase().contains(line.toLowerCase());
         }
-
         return !(found);
     }
-
-    Filter inject(Logger log)
-    {
+    Filter inject(Logger log) {
         this.log = log;
         return inject();
     }
-
     @Override
-    public Filter inject()
-    {
+    public Filter inject() {
         log.setFilter(this);
         return log.getFilter();
     }
-
-    void updateIgnoredLines(List<String> newList)
-    {
+    void updateIgnoredLines(List<String> newList) {
         ignored.clear();
         ignored.addAll(newList);
     }

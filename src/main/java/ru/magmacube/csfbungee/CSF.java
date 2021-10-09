@@ -28,7 +28,7 @@ public class CSF extends Plugin
             LogFilter filter = new LogFilter(this);
             filter.inject();
 
-            // Inject filter on every plugins
+            // Inject filter on every plugin
             for(Plugin plugin : getProxy().getPluginManager().getPlugins())
                 filter.inject(plugin.getLogger());
          }

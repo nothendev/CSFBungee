@@ -11,7 +11,7 @@ public class ReloadCmd extends Command
 
     ReloadCmd(CSF plugin)
     {
-        super("consolespamfixbungee", "csf.admin", "csfb");
+        super("csf", "csf.admin", "csfb");
         this.plugin = plugin;
     }
 
@@ -34,15 +34,13 @@ public class ReloadCmd extends Command
 
         try
         {
-            plugin.reloadConfig();
-            ((LogFilter) plugin.getLogger().getFilter()).updateIgnoredLines(plugin.getConfig().getIgnoredLines());
+            plugin.reloadConfig(); ((LogFilter) plugin.getLogger().getFilter()).updateIgnoredLines(plugin.getConfig().getIgnoredLines());
             sender.sendMessage(new TextComponent(ChatColor.GREEN + "Successfully updated ignored lines"));
         }
         catch(Exception e)
         {
             sender.sendMessage(new TextComponent(ChatColor.RED + "Error whilst updating ignored lines. Check the console" +
-                    " for more information."));
-            System.err.println("[ConsoleSpamFixBungee] Could not update ignored lines: " + e.getMessage());
+                    " for more information.")); System.err.println("[ConsoleSpamFixBungee] Could not update ignored lines: " + e.getMessage());
             e.printStackTrace();
         }
     }
